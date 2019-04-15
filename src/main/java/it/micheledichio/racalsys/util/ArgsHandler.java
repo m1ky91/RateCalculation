@@ -48,5 +48,9 @@ public class ArgsHandler {
 			}
 		}
 	}
+
+	public String getMarketFilename() {
+		return args[0];
+	}
 	
 }

@@ -13,7 +13,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<junit.version>4.12</junit.version>
 		<slf4j.version>1.7.21</slf4j.version>
-		<easymock.version>3.5.1</easymock.version>
+		<easymock.version>4.0.2</easymock.version>
+		<opencsv.version>4.1</opencsv.version>
 		<jarplugin.version>3.1.0</jarplugin.version>
 		<compiler.version>3.8.0</compiler.version>
 		<surfire.version>2.19.1</surfire.version>
@@ -41,76 +42,42 @@
 			<version>${easymock.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- opencsv -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>${opencsv.version}</version>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
-			<!-- <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>${jarplugin.version}</version>
-				<configuration>
-					<finalName>MoneyTransfer</finalName>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>it.micheledichio.revolut.moneytransfers.App</mainClass>
-							<classpathPrefix>dependency-jars/</classpathPrefix>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<finalName>MoneyTransfer</finalName>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-							<archive>
-								<manifest>
-									<mainClass>it.micheledichio.revolut.moneytransfers.App</mainClass>
-								</manifest>
-							</archive>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
+				<version>${jarplugin.version}</version> <configuration> <finalName>MoneyTransfer</finalName> 
+				<archive> <manifest> <addClasspath>true</addClasspath> <mainClass>it.micheledichio.revolut.moneytransfers.App</mainClass> 
+				<classpathPrefix>dependency-jars/</classpathPrefix> </manifest> </archive> 
+				</configuration> </plugin> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-assembly-plugin</artifactId> <executions> <execution> <phase>package</phase> 
+				<goals> <goal>single</goal> </goals> <configuration> <finalName>MoneyTransfer</finalName> 
+				<descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> </descriptorRefs> 
+				<archive> <manifest> <mainClass>it.micheledichio.revolut.moneytransfers.App</mainClass> 
+				</manifest> </archive> </configuration> </execution> </executions> </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${surfire.version}</version>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
+					<argLine>
+						--add-opens=java.base/java.lang=ALL-UNNAMED
+					</argLine>
 				</configuration>
 			</plugin>
-			<!-- <plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					attached to Maven test phase
-					<execution>
-						<id>report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
+				<version>0.8.2</version> <executions> <execution> <goals> <goal>prepare-agent</goal> 
+				</goals> </execution> attached to Maven test phase <execution> <id>report</id> 
+				<phase>test</phase> <goals> <goal>report</goal> </goals> </execution> </executions> 
+				</plugin> -->
 		</plugins>
 	</build>
 </project>

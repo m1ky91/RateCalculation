@@ -1,8 +1,10 @@
-package it.micheledichio.racalsys.util;
+package it.micheledichio.racalsys.test.util;
 
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
+
+import it.micheledichio.racalsys.util.ArgsHandler;
 
 public class ArgsHandlerTest {
 	

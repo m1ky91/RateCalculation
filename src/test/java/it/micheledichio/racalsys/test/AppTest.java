@@ -1,5 +1,8 @@
-package it.micheledichio.racalsys;
+package it.micheledichio.racalsys.test;
 
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
@@ -26,24 +29,15 @@ public class AppTest {
 	public void quoteProducerProducesAnOptional() {
 		ArgsHandler argsHandler = EasyMock.createMock(ArgsHandler.class);
 		
+		expect(argsHandler.getMarketFilename()).andReturn("market.csv");
+		replay(argsHandler);
+		
 		QuoteProducer quoteProducer = new QuoteProducer(argsHandler);
 		Optional<Quote> quote = quoteProducer.produceQuote();
 		
 		assertTrue(quote != null);
-	}
-	
-	@Test
-	public void ifOptionalPresentQuoteAttributesAreNotNull() {
-		ArgsHandler argsHandler = EasyMock.createMock(ArgsHandler.class);
 		
-		QuoteProducer quoteProducer = new QuoteProducer(argsHandler);
-		Optional<Quote> quote = quoteProducer.produceQuote();
-		
-		assertTrue(quote.isPresent());
-		assertTrue(quote.get().getRequestedAmount() != null);
-		assertTrue(quote.get().getRate() != null);
-		assertTrue(quote.get().getMonthlyRepayment() != null);
-		assertTrue(quote.get().getTotalRepayment() != null);
+		verify(argsHandler);
 	}
 
 }
