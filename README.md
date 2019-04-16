@@ -63,5 +63,7 @@ g = 2 f i / (s (n + 1))
 #### External links
 
 [https://en.wikipedia.org/wiki/Effective_interest_rate](https://en.wikipedia.org/wiki/Effective_interest_rate) Effective interest rate
+
 [http://www.financeformulas.net/Loan_Payment_Formula.html](http://www.financeformulas.net/Loan_Payment_Formula.html) Loan payment
+
 [http://simplestudies.com/effective-interest-rate-in-context-of-loans.html/page/2](http://simplestudies.com/effective-interest-rate-in-context-of-loans.html/page/2) Effective annual interest rate on installment loans

@@ -1,5 +1,6 @@
 package it.micheledichio.racalsys.test.util;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
@@ -69,6 +70,16 @@ public class ArgsHandlerTest {
 		ArgsHandler argsHandler = new ArgsHandler(args);
 		
 		assertFalse(argsHandler.argsValid());
+	}
+	
+	@Test
+	public void validArgsReturnValidMarketFilenameAndLoanAmount() {
+		String[] args = {"market.csv", "15000"};
+		
+		ArgsHandler argsHandler = new ArgsHandler(args);
+		
+		assertEquals("15000", argsHandler.getLoanAmount());
+		assertEquals("market.csv", argsHandler.getMarketFilename());
 	}
 
 }

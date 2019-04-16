@@ -33,13 +33,13 @@ public class ArgsHandler {
 			            return false;
 			        }
 					if (amount % 100 != 0) {
-						System.out.println("Please provide a number for loan amount of any 100 [market_file] [loan_amount]");
+						System.out.println("Please provide a number for loan amount of any £100 [market_file] [loan_amount]");
 						return false;
 					} else if (amount < 1000){
-						System.out.println("Please provide a number for loan amount greater than or equal to 1000 [market_file] [loan_amount]");
+						System.out.println("Please provide a number for loan amount greater than or equal to £1000 [market_file] [loan_amount]");
 						return false;
 					} else if (amount > 15000){
-						System.out.println("Please provide a number for loan amount less than or equal to 15000 [market_file] [loan_amount]");
+						System.out.println("Please provide a number for loan amount less than or equal to £15000 [market_file] [loan_amount]");
 						return false;
 					} else {
 						return true;
@@ -51,6 +51,10 @@ public class ArgsHandler {
 
 	public String getMarketFilename() {
 		return args[0];
+	}
+
+	public String getLoanAmount() {
+		return args[1];
 	}
 	
 }

@@ -9,8 +9,6 @@ public class Quote {
 	private BigDecimal monthlyRepayment;
 	private BigDecimal totalRepayment;
 
-	public Quote() {}
-
 	public Quote(BigDecimal requestedAmount, BigDecimal rate, BigDecimal monthlyRepayment, BigDecimal totalRepayment) {
 		this.requestedAmount = requestedAmount;
 		this.rate = rate;
@@ -48,6 +46,25 @@ public class Quote {
 
 	public void setTotalRepayment(BigDecimal totalRepayment) {
 		this.totalRepayment = totalRepayment;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((monthlyRepayment == null) ? 0 : monthlyRepayment.hashCode());
+		result = prime * result + ((rate == null) ? 0 : rate.hashCode());
+		result = prime * result + ((requestedAmount == null) ? 0 : requestedAmount.hashCode());
+		result = prime * result + ((totalRepayment == null) ? 0 : totalRepayment.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Quote other = (Quote) obj;
+		return this.requestedAmount.equals(other.getRequestedAmount()) && this.rate.equals(other.getRate())
+				&& this.monthlyRepayment.equals(other.getMonthlyRepayment())
+				&& this.totalRepayment.equals(other.getTotalRepayment());
 	}
 	
 }

@@ -2,7 +2,9 @@ package it.micheledichio.racalsys.service;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 
 import it.micheledichio.racalsys.model.Lender;
 import it.micheledichio.racalsys.repository.CSVRepository;
@@ -19,20 +21,28 @@ public class LenderExtractor {
 		this.repository = new CSVRepository();
 	}
 
-	public Set<Lender> extractOrderedLenders(String marketFilename) {
+	public TreeSet<Lender> extractOrderedLenders(String marketFilename) {
+		TreeSet<Lender> lenderSet = new TreeSet<Lender>();
+		List<Lender> lenderList = new ArrayList<Lender>();
 		try {
 			repository.init(marketFilename);
-			repository.findAll();
+			lenderList = repository.findAll();
 			repository.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Unexpected error opening the market file");
+			return null;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Unexpected error closing the market file");
+			return null;
 		}
 		
-		return null;
+		if (lenderList == null) {
+			return null;
+		} else {
+			lenderList.stream().forEach(l -> lenderSet.add(l));
+		}
+		
+		return lenderSet;
 	}
 
 }

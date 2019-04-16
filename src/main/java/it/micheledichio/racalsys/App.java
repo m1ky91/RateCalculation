@@ -19,8 +19,8 @@ public class App {
 			if (quote.isPresent()) {
 				System.out.println("Requested amount: £" + quote.get().getRequestedAmount());
 				System.out.println("Rate: " + quote.get().getRate() + "%");
-				System.out.println("Monthly repayment: " + quote.get().getMonthlyRepayment());
-				System.out.println("Total repayment:" + quote.get().getTotalRepayment());
+				System.out.println("Monthly repayment: £" + quote.get().getMonthlyRepayment());
+				System.out.println("Total repayment: £" + quote.get().getTotalRepayment());
 			} else {
 				System.out.println("Sorry, it is not possible to provide a quote at this time.");
 			}

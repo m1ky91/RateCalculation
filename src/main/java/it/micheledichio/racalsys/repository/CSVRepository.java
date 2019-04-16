@@ -23,6 +23,11 @@ public class CSVRepository implements AbstractRepository<Lender> {
 	private CSVParser parser;
 	private CSVReader csvReader;
 	
+	public CSVRepository() {}
+	
+	public CSVRepository(CSVReader csvReader) {
+		this.csvReader = csvReader;
+	}
 
 	@Override
 	public List<Lender> findAll() {
@@ -31,10 +36,7 @@ public class CSVRepository implements AbstractRepository<Lender> {
 	    try {
 			list = csvReader.readAll();
 			list.stream().forEach(e -> {
-				Lender lender = new Lender();
-				lender.setName(e[0]);
-				lender.setRate(new BigDecimal(e[1]));
-				lender.setAvailable(new BigDecimal(e[2]));
+				Lender lender = new Lender(e[0], new BigDecimal(e[1]), new BigDecimal(e[2]));
 				lenderList.add(lender);
 			});
 		} catch (IOException | NullPointerException | NumberFormatException e) {

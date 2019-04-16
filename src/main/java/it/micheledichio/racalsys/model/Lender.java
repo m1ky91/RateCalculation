@@ -7,8 +7,6 @@ public class Lender implements Comparable<Lender> {
 	private String name;
 	private BigDecimal rate;
 	private BigDecimal available;
-	
-	public Lender() {}
 
 	public Lender(String name, BigDecimal rate, BigDecimal available) {
 		this.name = name;
@@ -20,29 +18,36 @@ public class Lender implements Comparable<Lender> {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public BigDecimal getRate() {
 		return rate;
-	}
-
-	public void setRate(BigDecimal rate) {
-		this.rate = rate;
 	}
 
 	public BigDecimal getAvailable() {
 		return available;
 	}
 
-	public void setAvailable(BigDecimal available) {
-		this.available = available;
+	@Override
+	public int compareTo(Lender other) {
+		if (this.rate.compareTo(other.getRate()) != 0) 
+			return this.rate.compareTo(other.getRate());
+		else
+			return this.available.compareTo(other.getAvailable());
 	}
 
 	@Override
-	public int compareTo(Lender other) {
-		return this.rate.compareTo(other.getRate());
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((available == null) ? 0 : available.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((rate == null) ? 0 : rate.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Lender other = (Lender) obj;
+		return this.name.equals(other.getName()) && this.rate.equals(other.getRate()) && this.available.equals(other.getAvailable());
 	}
 
 }

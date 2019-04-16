@@ -10,11 +10,24 @@ import java.util.Optional;
 import org.easymock.EasyMock;
 import org.junit.Test;
 
+import it.micheledichio.racalsys.App;
 import it.micheledichio.racalsys.model.Quote;
 import it.micheledichio.racalsys.service.QuoteProducer;
 import it.micheledichio.racalsys.util.ArgsHandler;
 
 public class AppTest {
+	
+	@Test
+	public void testMain() {
+		String[] args = {"marketFull.csv", "1000"};
+	    App.main(args);
+	}
+	
+	@Test
+	public void testMainWithQuote() {
+		String[] args = {"market.csv", "1000"};
+	    App.main(args);
+	}
 
 	@Test
 	public void argsHandledCorrectly() {
@@ -30,6 +43,7 @@ public class AppTest {
 		ArgsHandler argsHandler = EasyMock.createMock(ArgsHandler.class);
 		
 		expect(argsHandler.getMarketFilename()).andReturn("market.csv");
+		expect(argsHandler.getLoanAmount()).andReturn("1500");
 		replay(argsHandler);
 		
 		QuoteProducer quoteProducer = new QuoteProducer(argsHandler);
