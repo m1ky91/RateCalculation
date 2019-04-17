@@ -5,7 +5,7 @@
 	<groupId>it.micheledichio.racalsys</groupId>
 	<artifactId>RateCalculation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<description>Rate calculation system allowing prospective borrowers to obtain a quote from our pool of lenders for 36 month loans</description>
+	<description>Rate calculation system allowing prospective borrowers to obtain a quote from a pool of lenders for 36 month loans</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -13,6 +13,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<junit.version>4.12</junit.version>
 		<slf4j.version>1.7.21</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
 		<easymock.version>4.0.2</easymock.version>
 		<opencsv.version>4.1</opencsv.version>
 		<jarplugin.version>3.1.0</jarplugin.version>
@@ -43,7 +44,7 @@
 		<dependency>
 	        <groupId>log4j</groupId>
 	        <artifactId>log4j</artifactId>
-	        <version>1.2.17</version>
+	        <version>${log4j.version}</version>
 	    </dependency>
 		<!-- easymock -->
 		<dependency>

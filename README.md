@@ -1,9 +1,9 @@
 # RateCalculation
-Rate calculation system allowing prospective borrowers to obtain a quote from our pool of lenders for 36 month loans.
+Rate calculation system allowing prospective borrowers to obtain a quote from a pool of lenders for 36 month loans.
 
 ### Theoretical analysis and assumptions
 
-Taking in consideration our pull of lenders, a request of loan may be met for a total amount which does not exceed the sum of available funds of lenders.
+Taking in consideration a pull of lenders, a request of loan may be met for a total amount which does not exceed the sum of available funds of lenders.
 
 The requested amount will be provided starting from the lender with lowest rate, therefore initially the pull is being sorted by their rate.
 
@@ -78,7 +78,7 @@ mvn package
 
 #### Running tests
 
-With a coverage over 90% tests have been produced following the process of TDD. Files market.csv, market.txt and marketFull.csv used for the sake of tests.
+With a coverage over 90%, tests have been produced following the process of TDD. Files market.csv, market.txt and marketFull.csv have been used for the sake of tests.
 
 To run unit tests only:
 
