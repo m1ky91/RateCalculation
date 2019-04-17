@@ -5,12 +5,17 @@ import java.math.RoundingMode;
 import java.util.Optional;
 import java.util.TreeSet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import it.micheledichio.racalsys.model.Lender;
 import it.micheledichio.racalsys.model.Quote;
 import it.micheledichio.racalsys.util.ArgsHandler;
 import it.micheledichio.racalsys.util.FinancialUtil;
 
 public class QuoteProducer {
+	
+	Logger logger = LoggerFactory.getLogger(QuoteProducer.class);
 	
 	private FinancialUtil financialUtil = new FinancialUtil();
 	private BigDecimal lendersFunds = BigDecimal.ZERO;
@@ -28,12 +33,15 @@ public class QuoteProducer {
 	}
 
 	public Optional<Quote> produceQuote() {
+		logger.debug("The system is ready to extract informations of lenders from file.");
 		TreeSet<Lender> orderedLenders = lenderExtractor.extractOrderedLenders(argsHandler.getMarketFilename());
 		Quote quote = null;
 		
 		if (orderedLenders == null) {
+			logger.debug("Informations of lenders not extracted.");
 			return Optional.ofNullable(null);
 		} else {
+			logger.debug("Informations of lenders extracted: " + orderedLenders);
 			quote = defineQuote(orderedLenders, new BigDecimal(argsHandler.getLoanAmount()));
 			return Optional.ofNullable(quote);
 		}
@@ -58,9 +66,13 @@ public class QuoteProducer {
 				else
 					providedSum = lender.getAvailable().subtract((lender.getAvailable().subtract(loanAmount)));
 				loanAmount = loanAmount.subtract(providedSum);
+				logger.debug("Quote from lender: " + lender);
+				logger.debug("Provided sum: £" + providedSum);
 				Double lenderMonthlyRepayment = financialUtil.getMonthlyRepayment(providedSum.doubleValue(), lender.getRate().doubleValue());
+				logger.debug("Monthly repayment: £" + lenderMonthlyRepayment);
 				monthlyRepayment += lenderMonthlyRepayment;
 				Double lenderTotalRepayment = financialUtil.getTotalRepayment(lenderMonthlyRepayment);
+				logger.debug("Total repayment: £" + lenderTotalRepayment);
 				totalRepayment += lenderTotalRepayment; 
 				orderedLenders.remove(lender);
 			}

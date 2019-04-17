@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -17,6 +20,8 @@ import com.opencsv.CSVReaderBuilder;
 import it.micheledichio.racalsys.model.Lender;
 
 public class CSVRepository implements AbstractRepository<Lender> {
+	
+	Logger logger = LoggerFactory.getLogger(CSVRepository.class);
 	
 	private String marketFilename;
 	private Reader reader;
@@ -40,7 +45,7 @@ public class CSVRepository implements AbstractRepository<Lender> {
 				lenderList.add(lender);
 			});
 		} catch (IOException | NullPointerException | NumberFormatException e) {
-			System.out.println("Unexpected error reading the market file");
+			logger.error("Unexpected error reading the market file");
 			return null;
 		}
 	   

@@ -31,7 +31,7 @@ public class Lender implements Comparable<Lender> {
 		if (this.rate.compareTo(other.getRate()) != 0) 
 			return this.rate.compareTo(other.getRate());
 		else
-			return this.available.compareTo(other.getAvailable());
+			return other.getAvailable().compareTo(this.available);
 	}
 
 	@Override
@@ -48,6 +48,11 @@ public class Lender implements Comparable<Lender> {
 	public boolean equals(Object obj) {
 		Lender other = (Lender) obj;
 		return this.name.equals(other.getName()) && this.rate.equals(other.getRate()) && this.available.equals(other.getAvailable());
+	}
+
+	@Override
+	public String toString() {
+		return "Lender [name=" + name + ", rate=" + rate + ", available=" + available + "]";
 	}
 
 }

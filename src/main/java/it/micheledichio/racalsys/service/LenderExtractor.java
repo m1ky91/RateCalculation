@@ -6,10 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import it.micheledichio.racalsys.model.Lender;
 import it.micheledichio.racalsys.repository.CSVRepository;
 
 public class LenderExtractor {
+	
+	Logger logger = LoggerFactory.getLogger(LenderExtractor.class);
 	
 	private CSVRepository repository;
 
@@ -29,10 +34,10 @@ public class LenderExtractor {
 			lenderList = repository.findAll();
 			repository.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("Unexpected error opening the market file");
+			logger.error("Unexpected error opening the market file");
 			return null;
 		} catch (IOException e) {
-			System.out.println("Unexpected error closing the market file");
+			logger.error("Unexpected error closing the market file");
 			return null;
 		}
 		

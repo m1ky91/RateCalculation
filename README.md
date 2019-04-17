@@ -67,3 +67,29 @@ g = 2 f i / (s (n + 1))
 [http://www.financeformulas.net/Loan_Payment_Formula.html](http://www.financeformulas.net/Loan_Payment_Formula.html) Loan payment
 
 [http://simplestudies.com/effective-interest-rate-in-context-of-loans.html/page/2](http://simplestudies.com/effective-interest-rate-in-context-of-loans.html/page/2) Effective annual interest rate on installment loans
+
+### Installing
+
+Since the request was a command-line application, the system has been developed without framework in order to have an application light and fast. To take the compiled code and package it in its distributable format, in this case a JAR:
+
+```
+mvn package
+```
+
+#### Running tests
+
+With a coverage over 90% tests have been produced following the process of TDD. Files market.csv, market.txt and marketFull.csv used for the sake of tests.
+
+To run unit tests only:
+
+```
+mvn test
+```
+
+#### Running the application
+
+To run the application from command line:
+
+```
+java -jar target/RateCalculation-jar-with-dependencies.jar
+```
